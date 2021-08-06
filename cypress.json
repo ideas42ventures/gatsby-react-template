@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:8000",
+  "env": {
+    "mailchimp_url": "https://ideas42ventures.us1.list-manage.com/"
+  }
+}

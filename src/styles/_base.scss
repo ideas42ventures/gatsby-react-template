@@ -1,0 +1,38 @@
+@import "./variables";
+
+body {
+  background-color: $background-color;
+  color: $color-text-primary;
+  font-family: $font-sans;
+  font-weight: 400;
+  text-size-adjust: 100%;
+}
+
+main {
+  padding-bottom: $g-row;
+}
+
+a {
+  color: $color-accent-active;
+}
+
+input,
+textarea {
+  font-family: $font-sans;
+  font-size: $font-size-1;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+::selection {
+  background-color: $color-accent-secondary;
+  color: $color-white;
+}
+
+.centered {
+  margin: auto;
+  text-align: center;
+}

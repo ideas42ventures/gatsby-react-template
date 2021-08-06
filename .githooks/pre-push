@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+ORANGE='\033[0;33m'
+NC='\033[0m' # No Color
+
+if ! yarn validate; then
+  echo -e "${RED}Validating failed${NC}"
+  exit 1
+fi
+
+if ! yarn update-packages; then
+  echo -e "${RED}Updating packages failed${NC}"
+  exit 1
+fi
+
+changed_files="$(git --no-pager diff --name-only)"
+
+check_run() {
+	echo "$changed_files" | grep --quiet "$1"
+}
+
+if check_run package.json; then
+  echo -e "${ORANGE}Packages updated. Confirm and commit changes before continuing:${NC}"
+  git --no-pager diff package.json
+  exit 1
+fi
+
+echo -e "${GREEN}Pre-push hook completed successfully.${NC}"
+exit 0
+

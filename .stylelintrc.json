@@ -1,0 +1,13 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
+  "rules": {
+    "selector-class-pattern": null,
+    "string-quotes": "double",
+    "plugin/selector-bem-pattern": {
+      "preset": "bem"
+    }
+  }
+}
