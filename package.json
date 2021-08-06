@@ -1,11 +1,13 @@
 {
-  "name": "ideas42-ventures",
+  "name": "ideas42-ventures.com",
   "version": "1.0.0",
   "private": true,
-  "description": "ideas42 Ventures",
-  "author": "Rachael Serur",
-  "keywords": [
-    "gatsby"
+  "description": "ideas42 Ventures Website",
+  "contributers": [
+    "Lael Birch <lael@ideas42ventures.com>",
+    "William Bogans <william@ideas42ventures.com>",
+    "Amanda Munoz <amanda@ideas42ventures.com>",
+    "Rachael Serur <rachael@ideas42ventures.com>"
   ],
   "scripts": {
     "develop": "gatsby develop",
