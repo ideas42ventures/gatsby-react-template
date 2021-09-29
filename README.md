@@ -11,15 +11,23 @@
   Your website name
 </h1>
 
-## Creating a repository from this template
+## About this template
 
-This repo uses Gatsby, React, and Netlify.
+Technology choices:
+- Gatsby, React, Netlify
+- eslint
+- Jest for unit testing
+- cypress for end to end tests
+
+
+
+## Creating a repository from this template
 
 1. Follow [Github instrcutions](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) for creating a repo from a template
 1. [Link your Netlify account](https://www.netlify.com/blog/2016/09/29/a-step-by-step-guide-deploying-on-netlify/)
 
 
-## 🚀 Quick start
+## 🚀 Development Quick start
 
 1. **Prerequisites**
     - Install yarn. `npm install --global yarn`
@@ -121,6 +129,78 @@ If you are certain a pre-push verification step should be overridden (e.g., a mi
 Rather than having to commit and push everytime you want to test out changes to GitHub Action YAML files, you can run install [nektos/act](https://github.com/nektos/act) with `$ brew install act` and run with `$ act` to run them via a locally served Docker container.
 
 If you add an action that is unsupported by act, you can skip that action locally by adding the following line in your `.github/workflows/ci.yaml` file: `if: ${{ !env.ACT }}`.
+
+### Images
+ They can then be imported directly into a file and used with and `img` tag, or accessed via graphql query. Svg images can be imported and used directly by adding `.inline.svg` to the name of the file.
+
+#### Direct import
+This method does not take advantage of gatsby's image processing.
+Images should be placed in the `src/images` directory.
+
+```javascript
+import MyImage from "../images/my-image.png
+
+() => (
+  <img src={MyImage}>
+)
+```
+
+#### Gatsby image query
+Images should be placed in the `static/assets/images` directory.
+
+```javascript
+const PeopleList: React.FC<PeopleListProps> = ({
+  peopleImages = [],
+}) => {
+
+  return (
+    <ul>
+      {peopleImages.map((member) => {
+        const personImage = peopleImages.find((img) => img.name === member.img);
+        return (
+          <li><img
+            src={profileImageUrl}
+            alt={person.name}
+            className="card__image"
+            data-testid="personImage"
+          /></li>
+        );
+      })}
+    </ul>
+  );
+};
+
+export default (props: PeopleListProps): JSX.Element => (
+  <StaticQuery
+    query={graphql`
+      query PeopleImagesQuery {
+        allFile(filter: { relativeDirectory: { eq: "people" } }) {
+          nodes {
+            childImageSharp {
+              gatsbyImageData(width: 400, height: 400)
+            }
+            name
+          }
+        }
+      }
+    `}
+    render={(data) => (
+      <PeopleList peopleImages={data.allFile.nodes} {...props} />
+    )}
+  />
+);
+```
+
+#### SVGs
+Svgs can be used inline by if the file ends in `.inline.svg`. They can then be imported and used as components.
+
+```javascript
+import CoolSvg from 'cool.inline.svg';
+
+() => (
+  <CoolSvg />
+)
+```
 
 ## Learn more about Gatsby**
 
