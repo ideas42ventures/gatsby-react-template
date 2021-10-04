@@ -132,6 +132,25 @@ Rather than having to commit and push everytime you want to test out changes to 
 
 If you add an action that is unsupported by act, you can skip that action locally by adding the following line in your `.github/workflows/ci.yaml` file: `if: ${{ !env.ACT }}`.
 
+### Updating from this template
+
+If you want to update your repository from this template, add the template as a remote, fetch the template's `main` branch and merge it into your branch.
+
+```
+git remote add template git@github.com:ideas42ventures/gatsby-react-template.git
+git fetch template
+git merge template/main
+```
+
+### Code coverage
+
+These steps will enable you to turn on code coverage for the project.
+
+1. Login to [codecov.io](codecov.io)
+1. Enable code coverage for your repo
+1. Enter the CODECOV_TOKEN into your GitHub action secrets, by going to `Settings > Secrets > Actions secret > New repository secret`
+1. Uncomment the code coverage lines in `.github/workflows/ci.yml`.
+
 ### Images
  They can then be imported directly into a file and used with and `img` tag, or accessed via graphql query. Svg images can be imported and used directly by adding `.inline.svg` to the name of the file.
 
