@@ -44,7 +44,7 @@ jobs:
       run: yarn type-check
 
     - name: Run tests and generate coverage report
-      run: yarn test --coverage --ci
+      run: yarn test --coverage --ci ----passWithNoTests
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v2
