@@ -25,7 +25,7 @@
     "test:watch": "jest --watch",
     "test:e2e": "cypress open",
     "update-packages": "npx npm-check-updates -u --packageFile package.json && yarn install",
-    "validate": "yarn lint && yarn type-check && yarn format && yarn test"
+    "validate": "yarn lint && yarn type-check && yarn format && yarn test --passWithNoTests"
   },
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
