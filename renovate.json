@@ -1,5 +1,12 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "ignorePaths": [".github/**", ".nvmrc"],
+  "packageRules": [{
+    "matchUpdateTypes": ["minor", "patch"],
+    "matchCurrentVersion": "!/^0/",
+    "automerge": true
+  }],
+  "rebaseStalePrs": true
 }
