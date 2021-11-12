@@ -2,12 +2,54 @@
   "extends": [
     "config:base"
   ],
+  "labels": [
+    "maintenance",
+    ":robot:"
+  ],
+  "schedule": [
+    "before 7am"
+  ],
+  "semanticCommits": true,
+  "semanticCommitType": "build",
+  "automerge": true,
+  "automergeStrategy": "squash",
+  "major": {
+    "automerge":false
+  },
+
   "ignorePaths": [".github/**", ".nvmrc"],
   "packageRules": [{
     "matchUpdateTypes": ["minor", "patch"],
-    "matchCurrentVersion": "!/^0/",
-    "automerge": true,
-    "automergeStrategy": "squash"
-  }],
+    "matchCurrentVersion": "!/^0/"
+  },
+  {
+    "groupName": "dev",
+    "matchDepTypes": [
+      "devDependencies"
+    ],
+    "major": {
+      "automerge": true
+    }
+  },
+  {
+    "groupName": "gatsby",
+    "extends": "monorepo:gatsby"
+  },
+  {
+    "groupName": "react",
+    "extends": "packages:react"
+  },
+  {
+    "groupName": "unspecified",
+    "matchDepTypes": ["dependencies"],
+    "excludePackagePrefixes": [
+      "react",
+      "gatsby"
+    ],
+    "excludePackageNames": [
+      "@types/react"
+    ]
+  }
+],
   "rebaseStalePrs": true
 }
